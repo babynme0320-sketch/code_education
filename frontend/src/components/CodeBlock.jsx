@@ -1,27 +1,5 @@
-import { useState, useRef } from 'react'
-
-let pyodideInstance = null
-let pyodideLoadPromise = null
-
-async function getPyodide() {
-  if (pyodideInstance) return pyodideInstance
-  if (!pyodideLoadPromise) {
-    pyodideLoadPromise = (async () => {
-      if (!window.loadPyodide) {
-        await new Promise((resolve, reject) => {
-          const s = document.createElement('script')
-          s.src = 'https://cdn.jsdelivr.net/pyodide/v0.26.2/full/pyodide.js'
-          s.onload = resolve
-          s.onerror = () => reject(new Error('Pyodide 로드 실패'))
-          document.head.appendChild(s)
-        })
-      }
-      pyodideInstance = await window.loadPyodide()
-      return pyodideInstance
-    })()
-  }
-  return pyodideLoadPromise
-}
+import { useState } from 'react'
+import { getPyodide } from '../utils/pyodide.js'
 
 export default function CodeBlock({ language = 'python', label, content, executable = false }) {
   const [copied, setCopied] = useState(false)
@@ -42,7 +20,7 @@ export default function CodeBlock({ language = 'python', label, content, executa
     setError(null)
     try {
       const py = await getPyodide()
-      let captured = []
+      const captured = []
       py.globals.set('print', (...args) => {
         captured.push(args.map(a => String(a)).join(' '))
       })

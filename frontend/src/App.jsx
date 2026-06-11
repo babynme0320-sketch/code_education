@@ -1,11 +1,14 @@
 import { useState, useEffect } from 'react'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Sidebar from './components/Sidebar.jsx'
 import ChapterView from './components/ChapterView.jsx'
 import ProgressBar from './components/ProgressBar.jsx'
+import Sandbox from './pages/Sandbox.jsx'
+import Templates from './pages/Templates.jsx'
 
 const STORAGE_KEY = 'coding-edu-completed'
 
-export default function App() {
+function MainApp() {
   const [chapters, setChapters] = useState([])
   const [currentId, setCurrentId] = useState(null)
   const [currentChapter, setCurrentChapter] = useState(null)
@@ -47,6 +50,7 @@ export default function App() {
   const goTo = (id) => {
     setCurrentChapter(null)
     setCurrentId(id)
+    window.scrollTo(0, 0)
   }
 
   const goNext = () => {
@@ -86,6 +90,7 @@ export default function App() {
               <div className="big-emoji">💻</div>
               <h2>코딩 입문서에 오신 걸 환영합니다!</h2>
               <p>Claude Code를 활용해 코딩을 처음 배우는 분들을 위한 인터랙티브 가이드입니다.</p>
+              <p style={{ color: '#6b7280', fontSize: 14 }}>총 30챕터 · 약 20시간 · 5개 미니프로젝트</p>
               {chapters.length > 0 && (
                 <button className="start-btn" onClick={() => goTo(chapters[0].id)}>
                   첫 번째 챕터 시작하기 →
@@ -111,5 +116,17 @@ export default function App() {
         </div>
       </div>
     </div>
+  )
+}
+
+export default function App() {
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<MainApp />} />
+        <Route path="/sandbox" element={<Sandbox />} />
+        <Route path="/templates" element={<Templates />} />
+      </Routes>
+    </BrowserRouter>
   )
 }

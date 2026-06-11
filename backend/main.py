@@ -39,10 +39,31 @@ def get_chapters():
             "title": ch["title"],
             "emoji": ch["emoji"],
             "summary": ch["summary"],
+            "part": ch.get("part", 1),
+            "isMiniProject": ch.get("isMiniProject", False),
         }
         for ch in chapters
     ]
     return {"chapters": summary_list, "total": len(summary_list)}
+
+
+@app.get("/api/parts")
+def get_parts():
+    data = load_chapters()
+    chapters = data["chapters"]
+    parts: dict = {}
+    for ch in chapters:
+        part_id = ch.get("part", 1)
+        if part_id not in parts:
+            parts[part_id] = []
+        parts[part_id].append({
+            "id": ch["id"],
+            "title": ch["title"],
+            "emoji": ch["emoji"],
+            "summary": ch["summary"],
+            "isMiniProject": ch.get("isMiniProject", False),
+        })
+    return {"parts": [{"part": k, "chapters": v} for k, v in sorted(parts.items())]}
 
 
 @app.get("/api/chapters/{chapter_id}")
