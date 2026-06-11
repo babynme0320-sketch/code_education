@@ -1,0 +1,312 @@
+# HTML 코드를 문자열로 저장
+html_code = """<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>서울 연구중심병원</title>
+<style>
+/* ===== 전체 페이지 기본 설정 ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', 'Arial', sans-serif;
+  line-height: 1.6;
+  color: #333;
+  background-color: #f8f9fa;
+}
+
+/* ===== 헤더 영역 (최상단 배너) ===== */
+header {
+  background: linear-gradient(135deg, #0066cc, #0088ff);
+  color: white;
+  padding: 60px 20px;
+  text-align: center;
+}
+
+header h1 {
+  font-size: 48px;
+  margin-bottom: 10px;
+}
+
+header p {
+  font-size: 18px;
+  opacity: 0.95;
+}
+
+/* ===== 네비게이션 메뉴 ===== */
+nav {
+  background-color: #004399;
+  padding: 0;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: 0;
+  padding: 0;
+}
+
+nav li {
+  margin: 0;
+}
+
+nav a {
+  display: block;
+  color: white;
+  padding: 15px 25px;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+nav a:hover {
+  background-color: #0055cc;
+}
+
+/* ===== 메인 콘텐츠 영역 ===== */
+main {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+/* ===== 섹션 스타일 ===== */
+section {
+  background-color: white;
+  margin-bottom: 30px;
+  padding: 40px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+section h2 {
+  color: #0066cc;
+  font-size: 36px;
+  margin-bottom: 25px;
+  border-bottom: 3px solid #0066cc;
+  padding-bottom: 10px;
+}
+
+section p {
+  margin-bottom: 15px;
+  line-height: 1.8;
+}
+
+/* ===== 리스트 스타일 ===== */
+.feature-list {
+  list-style: none;
+  margin: 20px 0;
+}
+
+.feature-list li {
+  padding: 10px 0;
+  padding-left: 30px;
+  font-size: 16px;
+  color: #555;
+}
+
+/* ===== 부서 카드 그리드 ===== */
+.dept-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.dept-card {
+  background-color: #f9f9f9;
+  border-left: 5px solid #0066cc;
+  padding: 25px;
+  border-radius: 8px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.dept-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 102, 204, 0.2);
+}
+
+.dept-card h3 {
+  color: #0066cc;
+  font-size: 22px;
+  margin-bottom: 10px;
+}
+
+.dept-card p {
+  color: #666;
+  font-size: 15px;
+}
+
+/* ===== 연락처 정보 ===== */
+.contact-info {
+  background-color: #f0f8ff;
+  padding: 30px;
+  border-radius: 8px;
+  border-left: 5px solid #0066cc;
+}
+
+.contact-info p {
+  font-size: 16px;
+  margin: 12px 0;
+  color: #333;
+}
+
+.contact-info strong {
+  color: #0066cc;
+}
+
+/* ===== 페이지 최하단 ===== */
+footer {
+  background-color: #004399;
+  color: white;
+  text-align: center;
+  padding: 30px 20px;
+  margin-top: 40px;
+}
+
+footer p {
+  margin: 0;
+  font-size: 14px;
+}
+
+/* ===== 반응형 디자인 (모바일) ===== */
+@media (max-width: 768px) {
+  header h1 {
+    font-size: 32px;
+  }
+
+  header p {
+    font-size: 16px;
+  }
+
+  nav ul {
+    flex-direction: column;
+  }
+
+  nav a {
+    padding: 12px 20px;
+  }
+
+  section {
+    padding: 25px;
+  }
+
+  section h2 {
+    font-size: 28px;
+  }
+
+  .dept-grid {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
+</head>
+<body>
+<!-- ===== 헤더 영역 ===== -->
+<header>
+  <h1>🏥 서울 연구중심병원</h1>
+  <p>최고의 의료 서비스와 연구로 건강을 지켜드립니다</p>
+</header>
+
+<!-- ===== 네비게이션 메뉴 ===== -->
+<nav>
+  <ul>
+    <li><a href="#about">병원 소개</a></li>
+    <li><a href="#departments">진료과</a></li>
+    <li><a href="#research">연구</a></li>
+    <li><a href="#contact">연락처</a></li>
+  </ul>
+</nav>
+
+<!-- ===== 메인 콘텐츠 ===== -->
+<main>
+  <!-- 소개 섹션 -->
+  <section id="about">
+    <h2>병원 소개</h2>
+    <p>서울 연구중심병원은 2010년에 설립되어 지난 13년간 최고 수준의 의료 서비스를 제공해왔습니다.</p>
+    <ul class="feature-list">
+      <li>✓ 최신 의료 기술 도입</li>
+      <li>✓ 뛰어난 의료 전문가</li>
+      <li>✓ 환자 중심 서비스</li>
+      <li>✓ 활발한 의료 연구</li>
+    </ul>
+  </section>
+
+  <!-- 진료과 섹션 -->
+  <section id="departments">
+    <h2>주요 진료과</h2>
+    <div class="dept-grid">
+      <div class="dept-card">
+        <h3>내과</h3>
+        <p>소화기, 순환기, 호흡기 질환 치료</p>
+      </div>
+      <div class="dept-card">
+        <h3>외과</h3>
+        <p>암, 복부, 혈관 수술</p>
+      </div>
+      <div class="dept-card">
+        <h3>신경과</h3>
+        <p>뇌졸중, 치매, 신경 질환</p>
+      </div>
+      <div class="dept-card">
+        <h3>정형외과</h3>
+        <p>뼈, 관절, 척추 질환</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 연구 섹션 -->
+  <section id="research">
+    <h2>의료 연구</h2>
+    <p>우리 병원은 다양한 의료 연구를 진행하고 있습니다:</p>
+    <ul class="feature-list">
+      <li>🔬 암 치료 신약 개발</li>
+      <li>🔬 심뇌혈관 질환 연구</li>
+      <li>🔬 난치병 치료법 연구</li>
+    </ul>
+  </section>
+
+  <!-- 연락처 섹션 -->
+  <section id="contact">
+    <h2>연락처</h2>
+    <div class="contact-info">
+      <p><strong>주소:</strong> 서울시 강남구 의료로 123</p>
+      <p><strong>대표전화:</strong> 02-1234-5678</p>
+      <p><strong>응급실:</strong> 02-1234-5679</p>
+      <p><strong>이메일:</strong> info@seoulmedical.com</p>
+    </div>
+  </section>
+</main>
+
+<!-- ===== 페이지 최하단 ===== -->
+<footer>
+  <p>&copy; 2026 서울 연구중심병원. All rights reserved.</p>
+</footer>
+
+<script>
+// 네비게이션 메뉴 클릭 시 부드러운 스크롤
+document.querySelectorAll('nav a').forEach(link => {
+  link.addEventListener('click', function(e) {
+    e.preventDefault();
+    const targetId = this.getAttribute('href');
+    const target = document.querySelector(targetId);
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  });
+});
+</script>
+</body>
+</html>
+"""
+with open("연구중심병원 웹페이지 1장 만들기.html", "w", encoding="utf-8") as file:
+    file.write(html_code)
