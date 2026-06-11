@@ -1,0 +1,115 @@
+import { useState, useEffect } from 'react'
+import Sidebar from './components/Sidebar.jsx'
+import ChapterView from './components/ChapterView.jsx'
+import ProgressBar from './components/ProgressBar.jsx'
+
+const STORAGE_KEY = 'coding-edu-completed'
+
+export default function App() {
+  const [chapters, setChapters] = useState([])
+  const [currentId, setCurrentId] = useState(null)
+  const [currentChapter, setCurrentChapter] = useState(null)
+  const [completed, setCompleted] = useState(() => {
+    try {
+      return new Set(JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]'))
+    } catch {
+      return new Set()
+    }
+  })
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    fetch('/api/chapters')
+      .then(r => r.json())
+      .then(data => {
+        setChapters(data.chapters)
+        setLoading(false)
+      })
+      .catch(() => setLoading(false))
+  }, [])
+
+  useEffect(() => {
+    if (!currentId) return
+    fetch(`/api/chapters/${currentId}`)
+      .then(r => r.json())
+      .then(data => setCurrentChapter(data))
+  }, [currentId])
+
+  const markComplete = (id) => {
+    setCompleted(prev => {
+      const next = new Set(prev)
+      next.add(id)
+      localStorage.setItem(STORAGE_KEY, JSON.stringify([...next]))
+      return next
+    })
+  }
+
+  const goTo = (id) => {
+    setCurrentChapter(null)
+    setCurrentId(id)
+  }
+
+  const goNext = () => {
+    const idx = chapters.findIndex(c => c.id === currentId)
+    if (idx < chapters.length - 1) goTo(chapters[idx + 1].id)
+  }
+
+  const goPrev = () => {
+    const idx = chapters.findIndex(c => c.id === currentId)
+    if (idx > 0) goTo(chapters[idx - 1].id)
+  }
+
+  const currentIdx = chapters.findIndex(c => c.id === currentId)
+
+  return (
+    <div className="app-layout">
+      <Sidebar
+        chapters={chapters}
+        currentId={currentId}
+        completed={completed}
+        onSelect={goTo}
+      />
+      <div style={{ flex: 1, display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
+        {chapters.length > 0 && (
+          <div className="top-progress">
+            <ProgressBar completed={completed.size} total={chapters.length} />
+          </div>
+        )}
+        <div className="main-content">
+          {loading ? (
+            <div className="loading-state">
+              <div style={{ fontSize: 48, marginBottom: 16 }}>⏳</div>
+              <p>챕터를 불러오는 중...</p>
+            </div>
+          ) : !currentId ? (
+            <div className="welcome-state">
+              <div className="big-emoji">💻</div>
+              <h2>코딩 입문서에 오신 걸 환영합니다!</h2>
+              <p>Claude Code를 활용해 코딩을 처음 배우는 분들을 위한 인터랙티브 가이드입니다.</p>
+              {chapters.length > 0 && (
+                <button className="start-btn" onClick={() => goTo(chapters[0].id)}>
+                  첫 번째 챕터 시작하기 →
+                </button>
+              )}
+            </div>
+          ) : currentChapter ? (
+            <ChapterView
+              chapter={currentChapter}
+              isCompleted={completed.has(currentId)}
+              hasPrev={currentIdx > 0}
+              hasNext={currentIdx < chapters.length - 1}
+              onComplete={() => markComplete(currentId)}
+              onPrev={goPrev}
+              onNext={goNext}
+            />
+          ) : (
+            <div className="loading-state">
+              <div style={{ fontSize: 48, marginBottom: 16 }}>📖</div>
+              <p>챕터를 불러오는 중...</p>
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  )
+}
