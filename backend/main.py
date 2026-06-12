@@ -24,6 +24,66 @@ def load_chapters():
         return json.load(f)
 
 
+def validate_chapters_structure():
+    try:
+        data = load_chapters()
+        if "chapters" not in data or not isinstance(data["chapters"], list):
+            raise ValueError("chapters.json must contain a list of chapters.")
+        
+        for ch in data["chapters"]:
+            ch_id = ch.get("id")
+            title = ch.get("title")
+            if ch_id is None or title is None:
+                raise ValueError(f"Chapter in chapters.json is missing id or title: {ch}")
+            
+            sections = ch.get("sections")
+            if not isinstance(sections, list):
+                raise ValueError(f"Chapter {ch_id} ({title}) sections must be a list.")
+            
+            for idx, sec in enumerate(sections):
+                stype = sec.get("type")
+                if not stype:
+                    raise ValueError(f"Chapter {ch_id} section {idx} is missing 'type'.")
+                
+                if stype == "conversation":
+                    if "messages" not in sec or not isinstance(sec["messages"], list):
+                        raise ValueError(
+                            f"Chapter {ch_id} section {idx} of type 'conversation' must contain a 'messages' list."
+                        )
+                    for m_idx, msg in enumerate(sec["messages"]):
+                        if "role" not in msg or ("content" not in msg and "text" not in msg):
+                            raise ValueError(
+                                f"Chapter {ch_id} section {idx} message {m_idx} must contain 'role' and ('content' or 'text')."
+                            )
+                elif stype == "quiz":
+                    if "questions" not in sec or not isinstance(sec["questions"], list):
+                        raise ValueError(
+                            f"Chapter {ch_id} section {idx} of type 'quiz' must contain a 'questions' list."
+                        )
+                    for q_idx, q in enumerate(sec["questions"]):
+                        qtype = q.get("type")
+                        if not qtype:
+                            raise ValueError(
+                                f"Chapter {ch_id} section {idx} question {q_idx} is missing 'type'."
+                            )
+                        if qtype == "choice":
+                            if "options" not in q or "answer" not in q:
+                                raise ValueError(
+                                    f"Chapter {ch_id} section {idx} choice question {q_idx} must contain 'options' and 'answer'."
+                                )
+                        elif qtype == "keyword":
+                            if "keywords" not in q:
+                                raise ValueError(
+                                    f"Chapter {ch_id} section {idx} keyword question {q_idx} must contain 'keywords'."
+                                )
+    except Exception as e:
+        print(f"❌ 데이터 검증 실패: {e}")
+        raise e
+
+
+validate_chapters_structure()
+
+
 @app.get("/api/health")
 def health_check():
     return {"status": "ok", "message": "서버가 정상 작동 중입니다"}

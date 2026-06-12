@@ -414,15 +414,18 @@ function TemplateCard({ template, onRun }) {
     setRunning(true)
     setOutput(null)
     setError(null)
+    let ns = null
     try {
       const py = await getPyodide()
       const captured = []
-      py.globals.set('print', (...args) => captured.push(args.map(String).join(' ')))
-      await py.runPythonAsync(template.code)
+      ns = py.runPython('dict()')
+      ns.set('print', (...args) => captured.push(args.map(String).join(' ')))
+      await py.runPythonAsync(template.code, { globals: ns })
       setOutput(captured.join('\n') || '(출력 없음)')
     } catch (e) {
       setError(e.message || String(e))
     } finally {
+      if (ns) ns.destroy()
       setRunning(false)
     }
   }

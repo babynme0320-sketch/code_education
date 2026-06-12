@@ -50,3 +50,10 @@ bash start.sh
 |------|----------|------|------|
 | 2026-06-11 | 초기 구성 (30챕터, 4기능 구현) | 전체 | 8챕터→30챕터 전면 재구성 |
 | 2026-06-12 | 하네스 구성 | 에이전트 4개 + 스킬 3개 | 지속적 개발 지원 |
+| 2026-06-12 | 챕터 19-30 데이터 계약 정상화 + 백엔드 validate_chapters_structure() 추가 | chapters.json, backend/main.py | conversation.messages[]/quiz.questions[] 계약 깨짐 수정 |
+| 2026-06-12 | start.sh uvicorn 실행 복구 | start.sh | uvicorn command not found → python3 -m uvicorn |
+| 2026-06-12 | Pyodide 상태 격리 (네임스페이스 + ns.destroy()) | CodeBlock, Quiz, Sandbox, Templates | 전역 상태 공유로 출력 혼입 방지 |
+| 2026-06-12 | fetch race 방지 (AbortController) + 챕터 위치 보존 (localStorage) | App.jsx | currentId 빠른 전환 시 이전 fetch 응답 덮어쓰기 방지, 새로고침 시 마지막 챕터 복원 |
+| 2026-06-12 | Vercel 백엔드 URL 하드코딩 제거 → VITE_BACKEND_URL env var | vercel.json, App.jsx, .env.example | vercel.json에 onrender URL 하드코딩 제거 |
+| 2026-06-12 | .dockerignore 추가 | backend/.dockerignore, frontend/.dockerignore | 불필요한 파일 Docker 이미지 제외 |
+| 2026-06-12 | 하네스 drift 동기화 | feature-dev, chapter-authoring, backend-dev | 오늘 코드 변경 반영 |

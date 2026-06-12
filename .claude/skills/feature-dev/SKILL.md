@@ -38,7 +38,8 @@ backend/
 3. **라우트 추가 시**: `App.jsx` Routes에 `<Route>` 추가 + Sidebar에 링크 추가.
 4. **API 추가 시**: 기존 CORS 미들웨어 그대로 활용. `ALLOWED_ORIGINS` env var.
 5. **외부 API 금지**: Claude API 포함 모든 외부 API 사용 금지.
-6. **로컬 스토리지 키**: `coding-edu-completed`(진도), `sandbox-code`(샌드박스), `mini-project-{id}`(미니프로젝트)
+6. **로컬 스토리지 키**: `coding-edu-completed`(진도), `coding-edu-current-chapter`(마지막 읽던 챕터 ID), `sandbox-code`(샌드박스), `mini-project-{id}`(미니프로젝트)
+7. **백엔드 URL**: 로컬 개발은 Vite proxy(`/api/*` → `localhost:8000`). 프로덕션(Vercel)은 `VITE_BACKEND_URL` 환경변수로 주입 (`import.meta.env.VITE_BACKEND_URL ?? ''`). vercel.json에 API rewrite 없음.
 
 ## 빌드 검증 (기능 추가 후 필수)
 

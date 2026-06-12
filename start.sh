@@ -13,8 +13,9 @@ echo "================================================"
 echo "[1/2] 백엔드 시작 중..."
 cd "$BACKEND"
 python3 -m pip install -r requirements.txt -q
-uvicorn main:app --host 0.0.0.0 --port 8000 --reload &
+python3 -m uvicorn main:app --host 0.0.0.0 --port 8000 --reload &
 BACKEND_PID=$!
+
 
 # 프런트엔드 의존성 설치 및 실행
 echo "[2/2] 프런트엔드 시작 중..."

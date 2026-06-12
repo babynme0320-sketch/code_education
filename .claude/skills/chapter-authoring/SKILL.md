@@ -104,5 +104,5 @@ python3 -c "import json; json.load(open('backend/content/chapters.json')); print
 
 ## 참고
 
-- 기존 챕터 구조 확인: `references/chapter-structure.md`
 - 파트 구성: 1부(기초), 2부(Python심화), 3부(Claude Code고급), 4부(웹서비스), 5부(자동화+캡스톤)
+- 챕터 추가 후 백엔드 시작 시 `validate_chapters_structure()`가 자동 검증하므로, 저장 후 `python3 backend/main.py` 실행으로 조기 오류 확인 가능

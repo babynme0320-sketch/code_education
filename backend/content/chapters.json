@@ -2971,13 +2971,16 @@
         },
         {
           "type": "conversation",
-          "role": "user",
-          "content": "GET이랑 POST 차이를 회사 업무로 비유해서 한 번만 더 쉽게 설명해줘."
-        },
-        {
-          "type": "conversation",
-          "role": "assistant",
-          "content": "좋은 비유로 설명드릴게요!\n\n**GET = 자료실에서 문서 열람**\n- \"작년 매출 보고서 좀 볼게요\" → 이미 있는 자료를 꺼내 봅니다\n- 아무것도 바꾸지 않고, 그냥 '보기'만 합니다\n\n**POST = 결재함에 새 문서 제출**\n- \"휴가 신청서 제출합니다\" → 새로운 내용을 만들어서 시스템에 등록합니다\n- 무언가가 '새로 생기거나 변합니다'\n\n그래서 게시판을 보면:\n- 글 목록 보기 = GET (그냥 읽기)\n- 새 글 작성 = POST (새로 만들기)\n\n이렇게 이해하시면 됩니다. 헷갈리면 \"읽기만 하면 GET, 뭔가 남기면 POST\"라고 외우세요!"
+          "messages": [
+            {
+              "role": "user",
+              "content": "GET이랑 POST 차이를 회사 업무로 비유해서 한 번만 더 쉽게 설명해줘."
+            },
+            {
+              "role": "assistant",
+              "content": "좋은 비유로 설명드릴게요!\n\n**GET = 자료실에서 문서 열람**\n- \"작년 매출 보고서 좀 볼게요\" → 이미 있는 자료를 꺼내 봅니다\n- 아무것도 바꾸지 않고, 그냥 '보기'만 합니다\n\n**POST = 결재함에 새 문서 제출**\n- \"휴가 신청서 제출합니다\" → 새로운 내용을 만들어서 시스템에 등록합니다\n- 무언가가 '새로 생기거나 변합니다'\n\n그래서 게시판을 보면:\n- 글 목록 보기 = GET (그냥 읽기)\n- 새 글 작성 = POST (새로 만들기)\n\n이렇게 이해하시면 됩니다. 헷갈리면 \"읽기만 하면 GET, 뭔가 남기면 POST\"라고 외우세요!"
+            }
+          ]
         },
         {
           "type": "text",
@@ -3001,15 +3004,19 @@
         },
         {
           "type": "quiz",
-          "quizType": "choice",
-          "question": "사용자가 게시판에서 '글 목록 보기'를 누를 때 사용하는 HTTP 방식은 무엇일까요?",
-          "options": [
-            "GET (데이터를 가져올 때)",
-            "POST (데이터를 새로 만들 때)",
-            "JSON (데이터 형식)",
-            "API (메뉴판)"
-          ],
-          "answer": 0
+          "questions": [
+            {
+              "type": "choice",
+              "question": "사용자가 게시판에서 '글 목록 보기'를 누를 때 사용하는 HTTP 방식은 무엇일까요?",
+              "options": [
+                "GET (데이터를 가져올 때)",
+                "POST (데이터를 새로 만들 때)",
+                "JSON (데이터 형식)",
+                "API (메뉴판)"
+              ],
+              "answer": 0
+            }
+          ]
         }
       ]
     },
@@ -3035,13 +3042,16 @@
         },
         {
           "type": "conversation",
-          "role": "user",
-          "content": "pip install fastapi uvicorn 했는데 'pip: command not found'라고 나와요. 어떻게 해야 하죠?"
-        },
-        {
-          "type": "conversation",
-          "role": "assistant",
-          "content": "당황하지 마세요, 흔한 문제예요! `pip` 대신 `pip3`를 써보세요.\n\n```bash\npip3 install fastapi uvicorn\n```\n\n그래도 안 되면 파이썬이 제대로 설치됐는지 확인이 필요합니다. 이렇게 입력해보세요.\n\n```bash\npython3 --version\n```\n\n`Python 3.x.x` 같은 게 나오면 파이썬은 정상이에요. 그럼 이렇게 해보세요.\n\n```bash\npython3 -m pip install fastapi uvicorn\n```\n\n`python3 -m pip`는 '파이썬아, 네 안에 있는 pip를 써줘'라는 뜻이라 거의 항상 작동합니다. 이래도 안 되면 메시지를 그대로 복사해서 저에게 보여주세요. 같이 해결해봐요!"
+          "messages": [
+            {
+              "role": "user",
+              "content": "pip install fastapi uvicorn 했는데 'pip: command not found'라고 나와요. 어떻게 해야 하죠?"
+            },
+            {
+              "role": "assistant",
+              "content": "당황하지 마세요, 흔한 문제예요! `pip` 대신 `pip3`를 써보세요.\n\n```bash\npip3 install fastapi uvicorn\n```\n\n그래도 안 되면 파이썬이 제대로 설치됐는지 확인이 필요합니다. 이렇게 입력해보세요.\n\n```bash\npython3 --version\n```\n\n`Python 3.x.x` 같은 게 나오면 파이썬은 정상이에요. 그럼 이렇게 해보세요.\n\n```bash\npython3 -m pip install fastapi uvicorn\n```\n\n`python3 -m pip`는 '파이썬아, 네 안에 있는 pip를 써줘'라는 뜻이라 거의 항상 작동합니다. 이래도 안 되면 메시지를 그대로 복사해서 저에게 보여주세요. 같이 해결해봐요!"
+            }
+          ]
         },
         {
           "type": "text",
@@ -3093,13 +3103,16 @@
         },
         {
           "type": "conversation",
-          "role": "user",
-          "content": "FastAPI로 할 일 목록 API를 만들어줘. 할 일 조회(전체), 할 일 추가, 할 일 삭제 기능이 필요해. 데이터는 일단 코드 안의 리스트에 저장하면 돼."
-        },
-        {
-          "type": "conversation",
-          "role": "assistant",
-          "content": "네! 할 일 목록 API를 만들어 드릴게요. `main.py` 파일로 저장하시면 됩니다.\n\n```python\nfrom fastapi import FastAPI\nfrom pydantic import BaseModel\n\napp = FastAPI()\n\ntodos = []\nnext_id = 1\n\nclass TodoInput(BaseModel):\n    task: str\n\n@app.get(\"/todos\")\ndef get_todos():\n    return todos\n\n@app.post(\"/todos\")\ndef add_todo(item: TodoInput):\n    global next_id\n    new_todo = {\"id\": next_id, \"task\": item.task, \"done\": False}\n    todos.append(new_todo)\n    next_id += 1\n    return new_todo\n\n@app.delete(\"/todos/{todo_id}\")\ndef delete_todo(todo_id: int):\n    global todos\n    todos = [t for t in todos if t[\"id\"] != todo_id]\n    return {\"message\": \"삭제 완료\"}\n```\n\n**실행 방법:**\n1. 위 코드를 `main.py`로 저장\n2. 터미널에서 `uvicorn main:app --reload`\n3. 브라우저에서 `localhost:8000/docs` 접속\n4. 화면에서 직접 추가/조회/삭제를 테스트!\n\n`POST`로 할 일을 추가하고, `GET`으로 목록을 보고, `DELETE`로 지울 수 있어요. `BaseModel`은 '들어오는 데이터의 형식을 검사하는 틀'인데, 지금은 'task라는 글자를 받는다'는 약속이라고만 이해하셔도 충분합니다!"
+          "messages": [
+            {
+              "role": "user",
+              "content": "FastAPI로 할 일 목록 API를 만들어줘. 할 일 조회(전체), 할 일 추가, 할 일 삭제 기능이 필요해. 데이터는 일단 코드 안의 리스트에 저장하면 돼."
+            },
+            {
+              "role": "assistant",
+              "content": "네! 할 일 목록 API를 만들어 드릴게요. `main.py` 파일로 저장하시면 됩니다.\n\n```python\nfrom fastapi import FastAPI\nfrom pydantic import BaseModel\n\napp = FastAPI()\n\ntodos = []\nnext_id = 1\n\nclass TodoInput(BaseModel):\n    task: str\n\n@app.get(\"/todos\")\ndef get_todos():\n    return todos\n\n@app.post(\"/todos\")\ndef add_todo(item: TodoInput):\n    global next_id\n    new_todo = {\"id\": next_id, \"task\": item.task, \"done\": False}\n    todos.append(new_todo)\n    next_id += 1\n    return new_todo\n\n@app.delete(\"/todos/{todo_id}\")\ndef delete_todo(todo_id: int):\n    global todos\n    todos = [t for t in todos if t[\"id\"] != todo_id]\n    return {\"message\": \"삭제 완료\"}\n```\n\n**실행 방법:**\n1. 위 코드를 `main.py`로 저장\n2. 터미널에서 `uvicorn main:app --reload`\n3. 브라우저에서 `localhost:8000/docs` 접속\n4. 화면에서 직접 추가/조회/삭제를 테스트!\n\n`POST`로 할 일을 추가하고, `GET`으로 목록을 보고, `DELETE`로 지울 수 있어요. `BaseModel`은 '들어오는 데이터의 형식을 검사하는 틀'인데, 지금은 'task라는 글자를 받는다'는 약속이라고만 이해하셔도 충분합니다!"
+            }
+          ]
         },
         {
           "type": "text",
@@ -3107,12 +3120,16 @@
         },
         {
           "type": "quiz",
-          "quizType": "keyword",
-          "question": "FastAPI로 작성한 main.py 파일의 서버를 실제로 켜는(실행하는) 명령어를 입력해보세요. (자동 새로고침 옵션 포함)",
-          "keywords": [
-            "uvicorn",
-            "main:app",
-            "--reload"
+          "questions": [
+            {
+              "type": "keyword",
+              "question": "FastAPI로 작성한 main.py 파일의 서버를 실제로 켜는(실행하는) 명령어를 입력해보세요. (자동 새로고침 옵션 포함)",
+              "keywords": [
+                "uvicorn",
+                "main:app",
+                "--reload"
+              ]
+            }
           ]
         }
       ]
@@ -3191,13 +3208,16 @@
         },
         {
           "type": "conversation",
-          "role": "user",
-          "content": "이 고객 데이터베이스에 '이름으로 검색하는 기능'이랑 '특정 지역 고객만 보는 기능'을 추가해줘. 부분 일치 검색도 됐으면 좋겠어."
-        },
-        {
-          "type": "conversation",
-          "role": "assistant",
-          "content": "네! 두 가지 검색 기능을 추가해 드릴게요. 부분 일치는 SQL의 `LIKE`와 `%` 기호를 쓰면 됩니다.\n\n```python\n@app.get(\"/customers/search\")\ndef search_by_name(name: str):\n    conn = get_db()\n    # %를 양쪽에 붙이면 '이름에 이 글자가 포함된' 모든 고객을 찾아요\n    rows = conn.execute(\n        \"SELECT * FROM customers WHERE name LIKE ?\",\n        (f\"%{name}%\",)\n    ).fetchall()\n    conn.close()\n    return [dict(row) for row in rows]\n\n@app.get(\"/customers/region\")\ndef filter_by_region(region: str):\n    conn = get_db()\n    rows = conn.execute(\n        \"SELECT * FROM customers WHERE region = ?\",\n        (region,)\n    ).fetchall()\n    conn.close()\n    return [dict(row) for row in rows]\n```\n\n**사용 예:**\n- `/customers/search?name=김` → 이름에 '김'이 들어간 모든 고객 (김대리, 김부장...)\n- `/customers/region?region=서울` → 서울 지역 고객만\n\n**포인트:** `LIKE '%김%'`는 '김'이 어디에 있든 포함되면 찾아준다는 뜻이에요. 양쪽 `%`가 '앞뒤로 뭐가 있어도 상관없음'을 의미합니다. 정확히 일치하는 것만 찾으려면 `region = ?`처럼 `=`를 쓰면 됩니다!"
+          "messages": [
+            {
+              "role": "user",
+              "content": "이 고객 데이터베이스에 '이름으로 검색하는 기능'이랑 '특정 지역 고객만 보는 기능'을 추가해줘. 부분 일치 검색도 됐으면 좋겠어."
+            },
+            {
+              "role": "assistant",
+              "content": "네! 두 가지 검색 기능을 추가해 드릴게요. 부분 일치는 SQL의 `LIKE`와 `%` 기호를 쓰면 됩니다.\n\n```python\n@app.get(\"/customers/search\")\ndef search_by_name(name: str):\n    conn = get_db()\n    # %를 양쪽에 붙이면 '이름에 이 글자가 포함된' 모든 고객을 찾아요\n    rows = conn.execute(\n        \"SELECT * FROM customers WHERE name LIKE ?\",\n        (f\"%{name}%\",)\n    ).fetchall()\n    conn.close()\n    return [dict(row) for row in rows]\n\n@app.get(\"/customers/region\")\ndef filter_by_region(region: str):\n    conn = get_db()\n    rows = conn.execute(\n        \"SELECT * FROM customers WHERE region = ?\",\n        (region,)\n    ).fetchall()\n    conn.close()\n    return [dict(row) for row in rows]\n```\n\n**사용 예:**\n- `/customers/search?name=김` → 이름에 '김'이 들어간 모든 고객 (김대리, 김부장...)\n- `/customers/region?region=서울` → 서울 지역 고객만\n\n**포인트:** `LIKE '%김%'`는 '김'이 어디에 있든 포함되면 찾아준다는 뜻이에요. 양쪽 `%`가 '앞뒤로 뭐가 있어도 상관없음'을 의미합니다. 정확히 일치하는 것만 찾으려면 `region = ?`처럼 `=`를 쓰면 됩니다!"
+            }
+          ]
         },
         {
           "type": "text",
@@ -3205,15 +3225,19 @@
         },
         {
           "type": "quiz",
-          "quizType": "choice",
-          "question": "데이터로 할 수 있는 4가지 기본 동작 'CRUD' 중에서, SQL의 'SELECT'에 해당하는 것은 무엇일까요?",
-          "options": [
-            "Create (생성)",
-            "Read (읽기/조회)",
-            "Update (수정)",
-            "Delete (삭제)"
-          ],
-          "answer": 1
+          "questions": [
+            {
+              "type": "choice",
+              "question": "데이터로 할 수 있는 4가지 기본 동작 'CRUD' 중에서, SQL의 'SELECT'에 해당하는 것은 무엇일까요?",
+              "options": [
+                "Create (생성)",
+                "Read (읽기/조회)",
+                "Update (수정)",
+                "Delete (삭제)"
+              ],
+              "answer": 1
+            }
+          ]
         }
       ]
     },
@@ -3279,13 +3303,16 @@
         },
         {
           "type": "conversation",
-          "role": "user",
-          "content": "React로 버튼을 누르면 숫자가 1씩 올라가는 컴포넌트를 만들어줘. 초기화 버튼도 있으면 좋겠어."
-        },
-        {
-          "type": "conversation",
-          "role": "assistant",
-          "content": "네! 카운터 컴포넌트를 만들어 드릴게요. 증가 버튼과 초기화 버튼을 모두 넣었습니다.\n\n```jsx\nimport { useState } from 'react';\n\nfunction Counter() {\n  const [count, setCount] = useState(0);\n\n  return (\n    <div style={{ textAlign: 'center', padding: '20px' }}>\n      <h2>현재 숫자: {count}</h2>\n      <button onClick={() => setCount(count + 1)}>\n        +1 증가\n      </button>\n      <button onClick={() => setCount(0)} style={{ marginLeft: '10px' }}>\n        초기화\n      </button>\n    </div>\n  );\n}\n\nexport default Counter;\n```\n\n**작동 방식:**\n- `useState(0)` → 숫자를 0에서 시작\n- `+1 증가` 버튼 → `setCount(count + 1)`로 현재 값에 1 더하기\n- `초기화` 버튼 → `setCount(0)`으로 다시 0으로\n\n**사용법:** 이 코드를 `src/Counter.jsx`로 저장하고, `App.jsx`에서 `<Counter />`로 불러오면 됩니다. 버튼을 누를 때마다 `state`가 바뀌고 화면이 자동으로 업데이트돼요!\n\n`export default Counter`는 '이 컴포넌트를 다른 파일에서 쓸 수 있게 내보낸다'는 뜻이에요. 컴포넌트를 조립하려면 꼭 필요합니다."
+          "messages": [
+            {
+              "role": "user",
+              "content": "React로 버튼을 누르면 숫자가 1씩 올라가는 컴포넌트를 만들어줘. 초기화 버튼도 있으면 좋겠어."
+            },
+            {
+              "role": "assistant",
+              "content": "네! 카운터 컴포넌트를 만들어 드릴게요. 증가 버튼과 초기화 버튼을 모두 넣었습니다.\n\n```jsx\nimport { useState } from 'react';\n\nfunction Counter() {\n  const [count, setCount] = useState(0);\n\n  return (\n    <div style={{ textAlign: 'center', padding: '20px' }}>\n      <h2>현재 숫자: {count}</h2>\n      <button onClick={() => setCount(count + 1)}>\n        +1 증가\n      </button>\n      <button onClick={() => setCount(0)} style={{ marginLeft: '10px' }}>\n        초기화\n      </button>\n    </div>\n  );\n}\n\nexport default Counter;\n```\n\n**작동 방식:**\n- `useState(0)` → 숫자를 0에서 시작\n- `+1 증가` 버튼 → `setCount(count + 1)`로 현재 값에 1 더하기\n- `초기화` 버튼 → `setCount(0)`으로 다시 0으로\n\n**사용법:** 이 코드를 `src/Counter.jsx`로 저장하고, `App.jsx`에서 `<Counter />`로 불러오면 됩니다. 버튼을 누를 때마다 `state`가 바뀌고 화면이 자동으로 업데이트돼요!\n\n`export default Counter`는 '이 컴포넌트를 다른 파일에서 쓸 수 있게 내보낸다'는 뜻이에요. 컴포넌트를 조립하려면 꼭 필요합니다."
+            }
+          ]
         },
         {
           "type": "text",
@@ -3293,10 +3320,14 @@
         },
         {
           "type": "quiz",
-          "quizType": "keyword",
-          "question": "React에서 '컴포넌트 안에서 변하는 값(상태)'을 관리할 때 사용하는 함수의 이름은 무엇일까요?",
-          "keywords": [
-            "useState"
+          "questions": [
+            {
+              "type": "keyword",
+              "question": "React에서 '컴포넌트 안에서 변하는 값(상태)'을 관리할 때 사용하는 함수의 이름은 무엇일까요?",
+              "keywords": [
+                "useState"
+              ]
+            }
           ]
         }
       ]
@@ -3363,13 +3394,16 @@
         },
         {
           "type": "conversation",
-          "role": "user",
-          "content": "내 React 앱에서 FastAPI 백엔드의 할 일 목록을 불러와서 화면에 표시해줘. 불러오는 중일 때는 로딩 표시도 보여주고, 에러가 나면 에러 메시지를 보여줬으면 좋겠어."
-        },
-        {
-          "type": "conversation",
-          "role": "assistant",
-          "content": "네! 로딩과 에러 처리까지 다 포함한 완성형 컴포넌트를 만들어 드릴게요.\n\n```jsx\nimport { useState, useEffect } from 'react';\n\nfunction TodoApp() {\n  const [todos, setTodos] = useState([]);\n  const [loading, setLoading] = useState(true);\n  const [error, setError] = useState(null);\n\n  useEffect(() => {\n    async function loadTodos() {\n      try {\n        setLoading(true);\n        const res = await fetch(\"http://localhost:8000/todos\");\n        if (!res.ok) throw new Error(\"서버 응답 오류\");\n        const data = await res.json();\n        setTodos(data);\n      } catch (e) {\n        setError(\"데이터를 불러오지 못했어요. 백엔드 서버가 켜져 있나요?\");\n      } finally {\n        setLoading(false);\n      }\n    }\n    loadTodos();\n  }, []);\n\n  if (loading) return <p>⏳ 불러오는 중...</p>;\n  if (error) return <p style={{ color: 'red' }}>❌ {error}</p>;\n\n  return (\n    <div>\n      <h1>📋 내 할 일 목록</h1>\n      <ul>\n        {todos.map(todo => (\n          <li key={todo.id}>\n            {todo.done ? '✅' : '☐'} {todo.task}\n          </li>\n        ))}\n      </ul>\n    </div>\n  );\n}\n\nexport default TodoApp;\n```\n\n**3가지 상태를 관리해요:**\n- `loading` → 불러오는 중이면 '⏳ 불러오는 중...' 표시\n- `error` → 실패하면 빨간 에러 메시지 표시\n- `todos` → 성공하면 할 일 목록 표시\n\n**주의:** 백엔드(FastAPI)에 CORS 설정이 되어 있어야 작동해요! 안 되면 앞에서 배운 CORSMiddleware를 백엔드에 추가하세요. 그리고 백엔드 서버(`uvicorn main:app --reload`)가 켜져 있어야 합니다!"
+          "messages": [
+            {
+              "role": "user",
+              "content": "내 React 앱에서 FastAPI 백엔드의 할 일 목록을 불러와서 화면에 표시해줘. 불러오는 중일 때는 로딩 표시도 보여주고, 에러가 나면 에러 메시지를 보여줬으면 좋겠어."
+            },
+            {
+              "role": "assistant",
+              "content": "네! 로딩과 에러 처리까지 다 포함한 완성형 컴포넌트를 만들어 드릴게요.\n\n```jsx\nimport { useState, useEffect } from 'react';\n\nfunction TodoApp() {\n  const [todos, setTodos] = useState([]);\n  const [loading, setLoading] = useState(true);\n  const [error, setError] = useState(null);\n\n  useEffect(() => {\n    async function loadTodos() {\n      try {\n        setLoading(true);\n        const res = await fetch(\"http://localhost:8000/todos\");\n        if (!res.ok) throw new Error(\"서버 응답 오류\");\n        const data = await res.json();\n        setTodos(data);\n      } catch (e) {\n        setError(\"데이터를 불러오지 못했어요. 백엔드 서버가 켜져 있나요?\");\n      } finally {\n        setLoading(false);\n      }\n    }\n    loadTodos();\n  }, []);\n\n  if (loading) return <p>⏳ 불러오는 중...</p>;\n  if (error) return <p style={{ color: 'red' }}>❌ {error}</p>;\n\n  return (\n    <div>\n      <h1>📋 내 할 일 목록</h1>\n      <ul>\n        {todos.map(todo => (\n          <li key={todo.id}>\n            {todo.done ? '✅' : '☐'} {todo.task}\n          </li>\n        ))}\n      </ul>\n    </div>\n  );\n}\n\nexport default TodoApp;\n```\n\n**3가지 상태를 관리해요:**\n- `loading` → 불러오는 중이면 '⏳ 불러오는 중...' 표시\n- `error` → 실패하면 빨간 에러 메시지 표시\n- `todos` → 성공하면 할 일 목록 표시\n\n**주의:** 백엔드(FastAPI)에 CORS 설정이 되어 있어야 작동해요! 안 되면 앞에서 배운 CORSMiddleware를 백엔드에 추가하세요. 그리고 백엔드 서버(`uvicorn main:app --reload`)가 켜져 있어야 합니다!"
+            }
+          ]
         },
         {
           "type": "text",
@@ -3377,15 +3411,19 @@
         },
         {
           "type": "quiz",
-          "quizType": "choice",
-          "question": "프런트엔드(localhost:5173)에서 백엔드(localhost:8000)로 처음 데이터를 요청할 때, 브라우저 보안 정책 때문에 흔히 만나는 에러는 무엇일까요?",
-          "options": [
-            "CORS 에러 (서로 다른 주소 간 요청 차단)",
-            "404 에러 (주소를 찾을 수 없음)",
-            "문법 에러 (코드 오타)",
-            "메모리 부족 에러"
-          ],
-          "answer": 0
+          "questions": [
+            {
+              "type": "choice",
+              "question": "프런트엔드(localhost:5173)에서 백엔드(localhost:8000)로 처음 데이터를 요청할 때, 브라우저 보안 정책 때문에 흔히 만나는 에러는 무엇일까요?",
+              "options": [
+                "CORS 에러 (서로 다른 주소 간 요청 차단)",
+                "404 에러 (주소를 찾을 수 없음)",
+                "문법 에러 (코드 오타)",
+                "메모리 부족 에러"
+              ],
+              "answer": 0
+            }
+          ]
         }
       ]
     },
@@ -3423,13 +3461,16 @@
         },
         {
           "type": "conversation",
-          "role": "user",
-          "content": "NewsAPI라는 공개 뉴스 API를 쓰고 싶어. requests로 한국 주요 뉴스를 가져오는 코드를 만들어줘. API 키는 내가 따로 넣을게."
-        },
-        {
-          "type": "conversation",
-          "role": "assistant",
-          "content": "네! NewsAPI로 한국 뉴스를 가져오는 코드를 만들어 드릴게요. API 키는 `YOUR_API_KEY` 부분에 넣으시면 됩니다.\n\n```python\nimport requests\n\ndef fetch_news(api_key):\n    url = \"https://newsapi.org/v2/top-headlines\"\n    params = {\n        \"country\": \"kr\",\n        \"pageSize\": 20,   # 20개 가져오기\n        \"apiKey\": api_key\n    }\n\n    response = requests.get(url, params=params)\n\n    if response.status_code == 200:\n        print(\"✅ 뉴스를 성공적으로 가져왔어요!\")\n        return response.json()\n    else:\n        print(f\"❌ 오류 발생: {response.status_code}\")\n        return None\n\n# 사용\nnews_data = fetch_news(\"YOUR_API_KEY\")\n```\n\n**포인트:**\n- `status_code == 200`을 확인해서 성공/실패를 구분했어요 (19장의 상태 코드 기억나죠?)\n- 성공하면 `response.json()`으로 JSON 데이터를 돌려줍니다\n- `pageSize`로 가져올 뉴스 개수를 조절할 수 있어요\n\nAPI 키는 newsapi.org에서 무료로 발급받을 수 있어요. 발급받은 키를 `\"YOUR_API_KEY\"` 자리에 넣고 실행해보세요!"
+          "messages": [
+            {
+              "role": "user",
+              "content": "NewsAPI라는 공개 뉴스 API를 쓰고 싶어. requests로 한국 주요 뉴스를 가져오는 코드를 만들어줘. API 키는 내가 따로 넣을게."
+            },
+            {
+              "role": "assistant",
+              "content": "네! NewsAPI로 한국 뉴스를 가져오는 코드를 만들어 드릴게요. API 키는 `YOUR_API_KEY` 부분에 넣으시면 됩니다.\n\n```python\nimport requests\n\ndef fetch_news(api_key):\n    url = \"https://newsapi.org/v2/top-headlines\"\n    params = {\n        \"country\": \"kr\",\n        \"pageSize\": 20,   # 20개 가져오기\n        \"apiKey\": api_key\n    }\n\n    response = requests.get(url, params=params)\n\n    if response.status_code == 200:\n        print(\"✅ 뉴스를 성공적으로 가져왔어요!\")\n        return response.json()\n    else:\n        print(f\"❌ 오류 발생: {response.status_code}\")\n        return None\n\n# 사용\nnews_data = fetch_news(\"YOUR_API_KEY\")\n```\n\n**포인트:**\n- `status_code == 200`을 확인해서 성공/실패를 구분했어요 (19장의 상태 코드 기억나죠?)\n- 성공하면 `response.json()`으로 JSON 데이터를 돌려줍니다\n- `pageSize`로 가져올 뉴스 개수를 조절할 수 있어요\n\nAPI 키는 newsapi.org에서 무료로 발급받을 수 있어요. 발급받은 키를 `\"YOUR_API_KEY\"` 자리에 넣고 실행해보세요!"
+            }
+          ]
         },
         {
           "type": "text",
@@ -3443,13 +3484,16 @@
         },
         {
           "type": "conversation",
-          "role": "user",
-          "content": "API에서 받은 뉴스 데이터에서 제목, 요약, 링크, 날짜만 골라내고 싶어. 그리고 'description'이 비어있는(None인) 뉴스는 건너뛰게 해줘."
-        },
-        {
-          "type": "conversation",
-          "role": "assistant",
-          "content": "네! 필요한 정보만 골라내고, 요약이 비어있는 뉴스는 건너뛰는 코드예요.\n\n```python\ndef parse_news(news_data):\n    clean_news = []\n\n    for article in news_data[\"articles\"]:\n        # 요약(description)이 없으면 건너뛰기\n        if article.get(\"description\") is None:\n            continue\n\n        clean_news.append({\n            \"제목\": article[\"title\"],\n            \"요약\": article[\"description\"],\n            \"링크\": article[\"url\"],\n            \"날짜\": article[\"publishedAt\"][:10]  # YYYY-MM-DD만\n        })\n\n    print(f\"✅ 총 {len(clean_news)}개의 뉴스를 정리했어요.\")\n    return clean_news\n```\n\n**포인트:**\n- `article.get(\"description\")` → `.get()`을 쓰면 키가 없어도 에러 없이 None을 돌려줘서 안전해요 (Part 1의 딕셔너리 기억나죠?)\n- `if ... is None: continue` → 요약이 없으면 그 뉴스는 건너뜁니다\n- `publishedAt[:10]` → '2026-06-11T09:00:00Z'에서 앞 10글자만 잘라 날짜만 남겨요\n\n이렇게 하면 깔끔하게 정리된 뉴스 목록만 남아요. 다음은 이걸 파일로 저장할 차례예요!"
+          "messages": [
+            {
+              "role": "user",
+              "content": "API에서 받은 뉴스 데이터에서 제목, 요약, 링크, 날짜만 골라내고 싶어. 그리고 'description'이 비어있는(None인) 뉴스는 건너뛰게 해줘."
+            },
+            {
+              "role": "assistant",
+              "content": "네! 필요한 정보만 골라내고, 요약이 비어있는 뉴스는 건너뛰는 코드예요.\n\n```python\ndef parse_news(news_data):\n    clean_news = []\n\n    for article in news_data[\"articles\"]:\n        # 요약(description)이 없으면 건너뛰기\n        if article.get(\"description\") is None:\n            continue\n\n        clean_news.append({\n            \"제목\": article[\"title\"],\n            \"요약\": article[\"description\"],\n            \"링크\": article[\"url\"],\n            \"날짜\": article[\"publishedAt\"][:10]  # YYYY-MM-DD만\n        })\n\n    print(f\"✅ 총 {len(clean_news)}개의 뉴스를 정리했어요.\")\n    return clean_news\n```\n\n**포인트:**\n- `article.get(\"description\")` → `.get()`을 쓰면 키가 없어도 에러 없이 None을 돌려줘서 안전해요 (Part 1의 딕셔너리 기억나죠?)\n- `if ... is None: continue` → 요약이 없으면 그 뉴스는 건너뜁니다\n- `publishedAt[:10]` → '2026-06-11T09:00:00Z'에서 앞 10글자만 잘라 날짜만 남겨요\n\n이렇게 하면 깔끔하게 정리된 뉴스 목록만 남아요. 다음은 이걸 파일로 저장할 차례예요!"
+            }
+          ]
         },
         {
           "type": "text",
@@ -3461,13 +3505,16 @@
         },
         {
           "type": "conversation",
-          "role": "user",
-          "content": "정리한 뉴스 목록을 CSV 파일로 저장하는 코드를 만들어줘. 엑셀에서 한글이 안 깨지게 해주고, 파일 이름에 오늘 날짜가 들어갔으면 좋겠어. (예: news_2026-06-11.csv)"
-        },
-        {
-          "type": "conversation",
-          "role": "assistant",
-          "content": "네! 한글이 안 깨지고, 파일 이름에 오늘 날짜가 자동으로 들어가는 코드예요.\n\n```python\nimport csv\nfrom datetime import datetime\n\ndef save_to_csv(news_list):\n    # 오늘 날짜로 파일 이름 만들기 (예: news_2026-06-11.csv)\n    today = datetime.now().strftime(\"%Y-%m-%d\")\n    filename = f\"news_{today}.csv\"\n\n    with open(filename, \"w\", newline=\"\", encoding=\"utf-8-sig\") as f:\n        writer = csv.DictWriter(f, fieldnames=[\"제목\", \"요약\", \"링크\", \"날짜\"])\n        writer.writeheader()\n        writer.writerows(news_list)\n\n    print(f\"✅ '{filename}' 파일로 저장 완료! ({len(news_list)}개)\")\n    return filename\n```\n\n**포인트:**\n- `datetime.now().strftime(\"%Y-%m-%d\")` → 오늘 날짜를 '2026-06-11' 형태로 만들어요\n- `f\"news_{today}.csv\"` → 파일 이름에 날짜를 끼워넣어요\n- `encoding=\"utf-8-sig\"` → 엑셀에서 한글 안 깨지게! (꼭 필요)\n- `newline=\"\"` → 줄 사이에 빈 줄이 생기는 걸 막아줘요\n\n이제 매일 실행하면 `news_2026-06-11.csv`, `news_2026-06-12.csv`처럼 날짜별로 파일이 쌓여요. 날짜별 기록 관리에 딱이죠!"
+          "messages": [
+            {
+              "role": "user",
+              "content": "정리한 뉴스 목록을 CSV 파일로 저장하는 코드를 만들어줘. 엑셀에서 한글이 안 깨지게 해주고, 파일 이름에 오늘 날짜가 들어갔으면 좋겠어. (예: news_2026-06-11.csv)"
+            },
+            {
+              "role": "assistant",
+              "content": "네! 한글이 안 깨지고, 파일 이름에 오늘 날짜가 자동으로 들어가는 코드예요.\n\n```python\nimport csv\nfrom datetime import datetime\n\ndef save_to_csv(news_list):\n    # 오늘 날짜로 파일 이름 만들기 (예: news_2026-06-11.csv)\n    today = datetime.now().strftime(\"%Y-%m-%d\")\n    filename = f\"news_{today}.csv\"\n\n    with open(filename, \"w\", newline=\"\", encoding=\"utf-8-sig\") as f:\n        writer = csv.DictWriter(f, fieldnames=[\"제목\", \"요약\", \"링크\", \"날짜\"])\n        writer.writeheader()\n        writer.writerows(news_list)\n\n    print(f\"✅ '{filename}' 파일로 저장 완료! ({len(news_list)}개)\")\n    return filename\n```\n\n**포인트:**\n- `datetime.now().strftime(\"%Y-%m-%d\")` → 오늘 날짜를 '2026-06-11' 형태로 만들어요\n- `f\"news_{today}.csv\"` → 파일 이름에 날짜를 끼워넣어요\n- `encoding=\"utf-8-sig\"` → 엑셀에서 한글 안 깨지게! (꼭 필요)\n- `newline=\"\"` → 줄 사이에 빈 줄이 생기는 걸 막아줘요\n\n이제 매일 실행하면 `news_2026-06-11.csv`, `news_2026-06-12.csv`처럼 날짜별로 파일이 쌓여요. 날짜별 기록 관리에 딱이죠!"
+            }
+          ]
         },
         {
           "type": "text",
@@ -3479,13 +3526,16 @@
         },
         {
           "type": "conversation",
-          "role": "user",
-          "content": "뉴스 수집 코드를 매일 아침 8시에 자동으로 실행되게 하고 싶어. 나는 맥북을 쓰고 있어. 그리고 실행될 때마다 로그(언제 실행됐는지)도 기록으로 남기고 싶어."
-        },
-        {
-          "type": "conversation",
-          "role": "assistant",
-          "content": "네! 맥에서 매일 8시 자동 실행 + 로그 기록까지 설정해 드릴게요.\n\n**1단계 — 코드에 로그 기록 추가:**\n```python\nfrom datetime import datetime\n\ndef main():\n    # 실행 시각을 로그 파일에 기록\n    now = datetime.now().strftime(\"%Y-%m-%d %H:%M:%S\")\n    with open(\"collector_log.txt\", \"a\", encoding=\"utf-8\") as log:\n        log.write(f\"[{now}] 뉴스 수집 시작\\n\")\n\n    api_key = \"YOUR_API_KEY\"\n    news_data = fetch_news(api_key)\n    if news_data:\n        clean = parse_news(news_data)\n        save_to_csv(clean)\n\nif __name__ == \"__main__\":\n    main()\n```\n`\"a\"` 모드는 '기존 내용 뒤에 이어쓰기'라서 로그가 쌓여요.\n\n**2단계 — cron으로 매일 8시 등록:**\n터미널에서 `crontab -e`를 입력한 뒤, 아래 한 줄을 추가하세요.\n```\n0 8 * * * /usr/bin/python3 /Users/내이름/news_collector.py\n```\n\n**cron 시간 읽는 법:** `0 8 * * *`는 왼쪽부터 `분 시 일 월 요일`이에요. `0 8`은 '8시 0분', 나머지 `*`은 '매일'이라는 뜻이죠.\n\n**팁:** 파일의 정확한 경로는 터미널에서 파일이 있는 폴더로 가서 `pwd` 명령으로 확인할 수 있어요. 이제 매일 아침 8시에 자동으로 뉴스가 모이고, `collector_log.txt`에 실행 기록이 남아요!"
+          "messages": [
+            {
+              "role": "user",
+              "content": "뉴스 수집 코드를 매일 아침 8시에 자동으로 실행되게 하고 싶어. 나는 맥북을 쓰고 있어. 그리고 실행될 때마다 로그(언제 실행됐는지)도 기록으로 남기고 싶어."
+            },
+            {
+              "role": "assistant",
+              "content": "네! 맥에서 매일 8시 자동 실행 + 로그 기록까지 설정해 드릴게요.\n\n**1단계 — 코드에 로그 기록 추가:**\n```python\nfrom datetime import datetime\n\ndef main():\n    # 실행 시각을 로그 파일에 기록\n    now = datetime.now().strftime(\"%Y-%m-%d %H:%M:%S\")\n    with open(\"collector_log.txt\", \"a\", encoding=\"utf-8\") as log:\n        log.write(f\"[{now}] 뉴스 수집 시작\\n\")\n\n    api_key = \"YOUR_API_KEY\"\n    news_data = fetch_news(api_key)\n    if news_data:\n        clean = parse_news(news_data)\n        save_to_csv(clean)\n\nif __name__ == \"__main__\":\n    main()\n```\n`\"a\"` 모드는 '기존 내용 뒤에 이어쓰기'라서 로그가 쌓여요.\n\n**2단계 — cron으로 매일 8시 등록:**\n터미널에서 `crontab -e`를 입력한 뒤, 아래 한 줄을 추가하세요.\n```\n0 8 * * * /usr/bin/python3 /Users/내이름/news_collector.py\n```\n\n**cron 시간 읽는 법:** `0 8 * * *`는 왼쪽부터 `분 시 일 월 요일`이에요. `0 8`은 '8시 0분', 나머지 `*`은 '매일'이라는 뜻이죠.\n\n**팁:** 파일의 정확한 경로는 터미널에서 파일이 있는 폴더로 가서 `pwd` 명령으로 확인할 수 있어요. 이제 매일 아침 8시에 자동으로 뉴스가 모이고, `collector_log.txt`에 실행 기록이 남아요!"
+            }
+          ]
         },
         {
           "type": "text",
@@ -3493,10 +3543,14 @@
         },
         {
           "type": "quiz",
-          "quizType": "error-fix",
-          "question": "아래는 뉴스 데이터를 CSV로 저장하는 코드입니다. 엑셀에서 열었더니 한글이 모두 깨져서 나옵니다. 무엇을 고쳐야 할까요?",
-          "code": "import csv\n\ndef save_to_csv(news_list):\n    with open(\"news.csv\", \"w\", newline=\"\") as f:\n        writer = csv.DictWriter(f, fieldnames=[\"제목\", \"요약\", \"링크\", \"날짜\"])\n        writer.writeheader()\n        writer.writerows(news_list)",
-          "hint": "한글이 깨지는 건 파일을 열 때 '인코딩' 설정이 빠졌기 때문이에요. open() 함수에 엑셀이 한글을 제대로 읽게 해주는 encoding 옵션을 추가해야 합니다."
+          "questions": [
+            {
+              "type": "error-fix",
+              "question": "아래는 뉴스 데이터를 CSV로 저장하는 코드입니다. 엑셀에서 열었더니 한글이 모두 깨져서 나옵니다. 무엇을 고쳐야 할까요?",
+              "hint": "한글이 깨지는 건 파일을 열 때 '인코딩' 설정이 빠졌기 때문이에요. open() 함수에 엑셀이 한글을 제대로 읽게 해주는 encoding 옵션을 추가해야 합니다.",
+              "code": "import csv\n\ndef save_to_csv(news_list):\n    with open(\"news.csv\", \"w\", newline=\"\") as f:\n        writer = csv.DictWriter(f, fieldnames=[\"제목\", \"요약\", \"링크\", \"날짜\"])\n        writer.writeheader()\n        writer.writerows(news_list)"
+            }
+          ]
         }
       ]
     },
@@ -3627,15 +3681,19 @@
         },
         {
           "type": "quiz",
-          "quizType": "choice",
-          "question": "BeautifulSoup에서 조건에 맞는 '모든' 태그를 리스트로 가져오는 메서드는 무엇일까요?",
-          "options": [
-            "find()",
-            "find_all()",
-            "get_text()",
-            "request()"
-          ],
-          "answer": 1
+          "questions": [
+            {
+              "type": "choice",
+              "question": "BeautifulSoup에서 조건에 맞는 '모든' 태그를 리스트로 가져오는 메서드는 무엇일까요?",
+              "options": [
+                "find()",
+                "find_all()",
+                "get_text()",
+                "request()"
+              ],
+              "answer": 1
+            }
+          ]
         }
       ]
     },
@@ -3782,10 +3840,14 @@
         },
         {
           "type": "quiz",
-          "quizType": "error-fix",
-          "question": "아래 코드는 폴더를 만들려고 합니다. 두 번째 실행할 때 'FileExistsError'가 발생합니다. 어떻게 고쳐야 할까요?",
-          "code": "import os\n\ntarget = \"/Users/me/Downloads/문서\"\nos.makedirs(target)",
-          "hint": "makedirs 함수에는 폴더가 이미 있어도 에러를 내지 않게 하는 옵션이 있습니다. exist_ok와 관련된 매개변수를 떠올려 보세요."
+          "questions": [
+            {
+              "type": "error-fix",
+              "question": "아래 코드는 폴더를 만들려고 합니다. 두 번째 실행할 때 'FileExistsError'가 발생합니다. 어떻게 고쳐야 할까요?",
+              "hint": "makedirs 함수에는 폴더가 이미 있어도 에러를 내지 않게 하는 옵션이 있습니다. exist_ok와 관련된 매개변수를 떠올려 보세요.",
+              "code": "import os\n\ntarget = \"/Users/me/Downloads/문서\"\nos.makedirs(target)"
+            }
+          ]
         }
       ]
     },
@@ -3888,12 +3950,16 @@
         },
         {
           "type": "quiz",
-          "quizType": "keyword",
-          "question": "schedule 라이브러리에서 예약한 작업이 실제로 실행되려면, 무한 루프 안에서 어떤 함수를 반복 호출해야 할까요? (함수 이름을 답하세요)",
-          "keywords": [
-            "run_pending",
-            "schedule.run_pending",
-            "run_pending()"
+          "questions": [
+            {
+              "type": "keyword",
+              "question": "schedule 라이브러리에서 예약한 작업이 실제로 실행되려면, 무한 루프 안에서 어떤 함수를 반복 호출해야 할까요? (함수 이름을 답하세요)",
+              "keywords": [
+                "run_pending",
+                "schedule.run_pending",
+                "run_pending()"
+              ]
+            }
           ]
         }
       ]
@@ -3997,15 +4063,19 @@
         },
         {
           "type": "quiz",
-          "quizType": "choice",
-          "question": "FastAPI 백엔드를 클라우드에 배포했더니 'ModuleNotFoundError: No module named fastapi' 에러가 났습니다. 가장 가능성 높은 원인은?",
-          "options": [
-            "코드에 오타가 있다",
-            "requirements.txt에 필요한 라이브러리가 빠져 있다",
-            "인터넷 연결이 끊겼다",
-            "도메인을 연결하지 않았다"
-          ],
-          "answer": 1
+          "questions": [
+            {
+              "type": "choice",
+              "question": "FastAPI 백엔드를 클라우드에 배포했더니 'ModuleNotFoundError: No module named fastapi' 에러가 났습니다. 가장 가능성 높은 원인은?",
+              "options": [
+                "코드에 오타가 있다",
+                "requirements.txt에 필요한 라이브러리가 빠져 있다",
+                "인터넷 연결이 끊겼다",
+                "도메인을 연결하지 않았다"
+              ],
+              "answer": 1
+            }
+          ]
         }
       ]
     },
@@ -4120,15 +4190,19 @@
         },
         {
           "type": "quiz",
-          "quizType": "choice",
-          "question": "비밀번호나 API 키가 담긴 .env 파일이 실수로 GitHub에 올라가는 것을 막으려면 어떤 파일에 '.env'를 적어야 할까요?",
-          "options": [
-            "requirements.txt",
-            ".gitignore",
-            "package.json",
-            "README.md"
-          ],
-          "answer": 1
+          "questions": [
+            {
+              "type": "choice",
+              "question": "비밀번호나 API 키가 담긴 .env 파일이 실수로 GitHub에 올라가는 것을 막으려면 어떤 파일에 '.env'를 적어야 할까요?",
+              "options": [
+                "requirements.txt",
+                ".gitignore",
+                "package.json",
+                "README.md"
+              ],
+              "answer": 1
+            }
+          ]
         }
       ]
     },
@@ -4289,12 +4363,16 @@
         },
         {
           "type": "quiz",
-          "quizType": "keyword",
-          "question": "이번 캡스톤 프로젝트에서 우리는 백엔드를 Render에, 프런트엔드를 어떤 서비스에 배포했나요? (서비스 이름을 답하세요)",
-          "keywords": [
-            "Vercel",
-            "vercel",
-            "버셀"
+          "questions": [
+            {
+              "type": "keyword",
+              "question": "이번 캡스톤 프로젝트에서 우리는 백엔드를 Render에, 프런트엔드를 어떤 서비스에 배포했나요? (서비스 이름을 답하세요)",
+              "keywords": [
+                "Vercel",
+                "vercel",
+                "버셀"
+              ]
+            }
           ]
         }
       ]

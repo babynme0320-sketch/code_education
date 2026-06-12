@@ -40,11 +40,13 @@ function CodeCompletionQuestion({ q, onAnswer }) {
 
   const handleRun = async () => {
     setRunning(true)
+    let ns = null
     try {
       const py = await getPyodide()
       const captured = []
-      py.globals.set('print', (...args) => captured.push(args.map(String).join(' ')))
-      await py.runPythonAsync(code)
+      ns = py.runPython('dict()')
+      ns.set('print', (...args) => captured.push(args.map(String).join(' ')))
+      await py.runPythonAsync(code, { globals: ns })
       const output = captured.join('\n').trim()
       const correct = output === (q.expectedOutput || '').trim()
       setResult({ output, correct, hasError: false })
@@ -52,6 +54,7 @@ function CodeCompletionQuestion({ q, onAnswer }) {
     } catch (e) {
       setResult({ output: e.message || String(e), correct: false, hasError: true })
     } finally {
+      if (ns) ns.destroy()
       setRunning(false)
     }
   }
@@ -86,11 +89,13 @@ function ErrorFixQuestion({ q, onAnswer }) {
 
   const handleRun = async () => {
     setRunning(true)
+    let ns = null
     try {
       const py = await getPyodide()
       const captured = []
-      py.globals.set('print', (...args) => captured.push(args.map(String).join(' ')))
-      await py.runPythonAsync(code)
+      ns = py.runPython('dict()')
+      ns.set('print', (...args) => captured.push(args.map(String).join(' ')))
+      await py.runPythonAsync(code, { globals: ns })
       const output = captured.join('\n') || '(출력 없음)'
       setResult({ output, hasError: false })
       onAnswer(true)
@@ -98,6 +103,7 @@ function ErrorFixQuestion({ q, onAnswer }) {
       setResult({ output: e.message || String(e), hasError: true })
       onAnswer(false)
     } finally {
+      if (ns) ns.destroy()
       setRunning(false)
     }
   }

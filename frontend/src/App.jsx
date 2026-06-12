@@ -7,10 +7,18 @@ import Sandbox from './pages/Sandbox.jsx'
 import Templates from './pages/Templates.jsx'
 
 const STORAGE_KEY = 'coding-edu-completed'
+const CURRENT_CHAPTER_KEY = 'coding-edu-current-chapter'
+const API_BASE = import.meta.env.VITE_BACKEND_URL ?? ''
 
 function MainApp() {
   const [chapters, setChapters] = useState([])
-  const [currentId, setCurrentId] = useState(null)
+  const [currentId, setCurrentId] = useState(() => {
+    try {
+      return JSON.parse(localStorage.getItem(CURRENT_CHAPTER_KEY) || 'null')
+    } catch {
+      return null
+    }
+  })
   const [currentChapter, setCurrentChapter] = useState(null)
   const [completed, setCompleted] = useState(() => {
     try {
@@ -22,7 +30,7 @@ function MainApp() {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    fetch('/api/chapters')
+    fetch(`${API_BASE}/api/chapters`)
       .then(r => r.json())
       .then(data => {
         setChapters(data.chapters)
@@ -33,9 +41,12 @@ function MainApp() {
 
   useEffect(() => {
     if (!currentId) return
-    fetch(`/api/chapters/${currentId}`)
+    const controller = new AbortController()
+    fetch(`${API_BASE}/api/chapters/${currentId}`, { signal: controller.signal })
       .then(r => r.json())
       .then(data => setCurrentChapter(data))
+      .catch(err => { if (err.name !== 'AbortError') console.error(err) })
+    return () => controller.abort()
   }, [currentId])
 
   const markComplete = (id) => {
@@ -50,6 +61,7 @@ function MainApp() {
   const goTo = (id) => {
     setCurrentChapter(null)
     setCurrentId(id)
+    localStorage.setItem(CURRENT_CHAPTER_KEY, JSON.stringify(id))
     window.scrollTo(0, 0)
   }
 

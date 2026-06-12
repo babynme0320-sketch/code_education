@@ -42,17 +42,20 @@ export default function Sandbox() {
     setRunning(true)
     setOutput(null)
     setError(null)
+    let ns = null
     try {
       const py = await getPyodide()
       const captured = []
-      py.globals.set('print', (...args) => {
+      ns = py.runPython('dict()')
+      ns.set('print', (...args) => {
         captured.push(args.map(a => String(a)).join(' '))
       })
-      await py.runPythonAsync(code)
+      await py.runPythonAsync(code, { globals: ns })
       setOutput(captured.length > 0 ? captured.join('\n') : '(출력 없음)')
     } catch (e) {
       setError(e.message || String(e))
     } finally {
+      if (ns) ns.destroy()
       setRunning(false)
     }
   }

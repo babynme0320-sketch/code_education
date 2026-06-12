@@ -37,6 +37,7 @@ backend/
 - 새 엔드포인트 추가 시 기존 CORS 미들웨어 활용 (ALLOWED_ORIGINS env var)
 - chapters.json 수정 시 반드시 Python으로 유효성 검증: `python3 -c "import json; json.load(open('backend/content/chapters.json'))"`
 - 챕터 추가/수정 시 ID 연속성 유지 (1~30)
+- `main.py` 시작 시 `validate_chapters_structure()`가 자동 실행됨 — conversation.messages[], quiz.questions[] 계약 위반 시 앱 시작 단계에서 즉시 오류 발생 (fail-fast)
 
 ## 에러 핸들링
 - JSON 파싱 오류: 저장 전 python3으로 검증
