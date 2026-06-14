@@ -8,10 +8,10 @@ import Templates from './pages/Templates.jsx'
 
 const STORAGE_KEY = 'coding-edu-completed'
 const CURRENT_CHAPTER_KEY = 'coding-edu-current-chapter'
-const API_BASE = import.meta.env.VITE_BACKEND_URL ?? ''
 
 function MainApp() {
   const [chapters, setChapters] = useState([])
+  const [allChapters, setAllChapters] = useState([])
   const [currentId, setCurrentId] = useState(() => {
     try {
       return JSON.parse(localStorage.getItem(CURRENT_CHAPTER_KEY) || 'null')
@@ -19,7 +19,6 @@ function MainApp() {
       return null
     }
   })
-  const [currentChapter, setCurrentChapter] = useState(null)
   const [completed, setCompleted] = useState(() => {
     try {
       return new Set(JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]'))
@@ -30,24 +29,20 @@ function MainApp() {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    fetch(`${API_BASE}/api/chapters`)
+    fetch(`${import.meta.env.BASE_URL}chapters.json`)
       .then(r => r.json())
       .then(data => {
-        setChapters(data.chapters)
+        const chs = data.chapters
+        setAllChapters(chs)
+        setChapters(chs.map(({ id, title, emoji, summary, part, isMiniProject }) =>
+          ({ id, title, emoji, summary, part, isMiniProject: isMiniProject ?? false })
+        ))
         setLoading(false)
       })
       .catch(() => setLoading(false))
   }, [])
 
-  useEffect(() => {
-    if (!currentId) return
-    const controller = new AbortController()
-    fetch(`${API_BASE}/api/chapters/${currentId}`, { signal: controller.signal })
-      .then(r => r.json())
-      .then(data => setCurrentChapter(data))
-      .catch(err => { if (err.name !== 'AbortError') console.error(err) })
-    return () => controller.abort()
-  }, [currentId])
+  const currentChapter = allChapters.find(c => c.id === currentId) ?? null
 
   const markComplete = (id) => {
     setCompleted(prev => {
@@ -59,7 +54,6 @@ function MainApp() {
   }
 
   const goTo = (id) => {
-    setCurrentChapter(null)
     setCurrentId(id)
     localStorage.setItem(CURRENT_CHAPTER_KEY, JSON.stringify(id))
     window.scrollTo(0, 0)
@@ -132,8 +126,9 @@ function MainApp() {
 }
 
 export default function App() {
+  const basename = import.meta.env.BASE_URL.replace(/\/$/, '')
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={basename}>
       <Routes>
         <Route path="/" element={<MainApp />} />
         <Route path="/sandbox" element={<Sandbox />} />

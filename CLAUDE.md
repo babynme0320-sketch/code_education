@@ -25,9 +25,9 @@
 
 | 서비스 | URL | 플랫폼 |
 |--------|-----|--------|
-| 프런트엔드 | https://code-education.vercel.app | Vercel (무료) |
-| 백엔드 | https://coding-edu-backend-5r66.onrender.com | Render.com (무료, 15분 슬립) |
-| GitHub | https://github.com/babynme0320-sketch/code_education | main 브랜치 자동 배포 |
+| 프런트엔드 | https://babynme0320-sketch.github.io/code_education/ | GitHub Pages (무료, 완전 정적) |
+| 백엔드 | 없음 (chapters.json → public/ 정적 파일로 대체) | - |
+| GitHub | https://github.com/babynme0320-sketch/code_education | main 푸시 시 Actions 자동 배포 |
 
 ## 로컬 개발
 
@@ -57,3 +57,4 @@ bash start.sh
 | 2026-06-12 | Vercel 백엔드 URL 하드코딩 제거 → VITE_BACKEND_URL env var | vercel.json, App.jsx, .env.example | vercel.json에 onrender URL 하드코딩 제거 |
 | 2026-06-12 | .dockerignore 추가 | backend/.dockerignore, frontend/.dockerignore | 불필요한 파일 Docker 이미지 제외 |
 | 2026-06-12 | 하네스 drift 동기화 | feature-dev, chapter-authoring, backend-dev | 오늘 코드 변경 반영 |
+| 2026-06-14 | GitHub Pages 완전 정적 배포로 전환 | App.jsx, vite.config.js, .github/workflows/deploy.yml | 백엔드 제거(chapters.json→public/), Vercel→GitHub Pages |
